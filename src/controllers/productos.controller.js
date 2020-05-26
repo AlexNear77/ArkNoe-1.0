@@ -73,7 +73,7 @@ productsCtrl.mostrarProducto = async (req,res) =>{
    const producto = await Producto.findById(req.params.id);
    // n es para hacer un random
    //var n = await Producto.count({"categoria": producto.categoria});
-   var r = Math.floor(Math.random() * n);
+   //var r = Math.floor(Math.random() * n);
 
    const productos = await Producto.find({"categoria": producto.categoria}).limit(3); //Hacemos una peticion a la bd, lo filtramos segun si el usuario le pertenece y lo ordenamos por fecha de manera desendente
    res.render('productos/producto', {producto,productos});
