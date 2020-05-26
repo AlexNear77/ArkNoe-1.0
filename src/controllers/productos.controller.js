@@ -116,37 +116,50 @@ productsCtrl.deleteCotizacion = async (req,res) =>{
 productsCtrl.cotizar = async (req,res) =>{
    const user = await UserCliente.findById(req.params.id);//req.sessionID req.user._id
    const cotizaciones = await Cotizacion.find({cliente: user.id}).sort({createdAt:'desc'});
-   console.log(cotizaciones);
+   
+   // var cots = JSON.parse(cotizaciones);
+    var cadena = ""
+   // for(var i = 0; i < cots.length; i++ )
+       
+
+   for(var k in cotizaciones) {
+      cadena += "Product: "+ cotizaciones[k].orden + " - cantidad: "+ cotizaciones[k].cantidad+ "<br>";
+      const cotizacion= await Cotizacion.findByIdAndDelete(cotizaciones[k].id);
+   }
+
    contentHTMl = `
       <h1>Cotizacion</h1>
       <h3>Cliente: ${user.nombre}</h3>
-      <h3>Correo: ${user.correo}</h3>
+      <h3 >Correo: ${user.email}</h3>
+      
       <ul>
-         <li>${cotizaciones}</li>
+         <li class="prettyprint">${cadena}</li>
       </ul>
    
    `;
    console.log(contentHTMl);
    // a donde lo enviamos
-   // const transporter = nodemailer.createTransport({
-   //    host: 'mail.fazttech.xyz', // el host del correo
-   //    port:23,
-   //    secure:false, // es para cer si se envia con SSL o sin SSl
-   //    auth:{
-   //       user: 'correoUli', // La cuenta a donde lo va a enviar
-   //       pass: 'contraseña' // contraseña esto lo creas en el host
-   //    },
-   //    tls:{ // con esto fazt pudo hacer que se enviara el correo desde local host
-   //       rejectUnauthorized: false
-   //    }
-   // });
-   // // datos de ese correo
-   // const info = await transporter.sendMail({ // lo enviamos a shel hostin y el shel hostin lo envia al correo email, aqui si van los datos de walas Ulises
-   //    from: "'ArcaNoe Server' <COrreo@usario> ",
-   //    to:'correoUlises@gmail.com',
-   //    subject: 'Cotizacion',
-   //    html: contentHTMl
-   // });
+   const transporter = nodemailer.createTransport({
+      host: 'mail.privateemail.com', // el host del correo
+      port:465,
+      secure:true, // es para cer si se envia con SSL o sin SSl
+      auth:{
+         user: 'cotizaciones@arknoe.store', // La cuenta a donde lo va a enviar
+         pass: ':77Arknoe77:' // contraseña esto lo creas en el host
+      },
+      tls:{ // con esto fazt pudo hacer que se enviara el correo desde local host
+         rejectUnauthorized: false
+      }
+   });
+   // datos de ese correo
+   const info = await transporter.sendMail({ // lo enviamos a shel hostin y el shel hostin lo envia al correo email, aqui si van los datos de walas Ulises
+      from: "'ArcaNoe Server' <cotizaciones@arknoe.store> ",
+      to:'alexgomeznear@gmail.com',
+      subject: 'Cotizacion',
+      html: contentHTMl
+   });
+
+   const cotizacion= await Cotizacion.findByIdAndDelete(cotizaciones.id);
 
    req.flash('success_msg','Cotizacion enviada satisfactoriamente');
    res.redirect('/usersClientes/mostrarPedidos');
