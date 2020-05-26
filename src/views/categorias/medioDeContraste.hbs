@@ -1,0 +1,48 @@
+<div class="row">
+
+   {{>categorias}}
+   <!-- /.col-lg-2 -->
+
+   <div class="col-lg-8">
+      <!-- Jumbotron crea la caja blanca-->
+      <div class="jumbotron p-4">
+         <!-- titulo -->
+         <h2 style="text-align: center;">Medio de contraste</h2>
+         <!-- linea-->
+         <hr class="my-3">
+         <div class="row">
+            {{#each productos}}
+            <div class="col-lg-4 col-md-6 mb-4">
+               <!-- Aqui va el foreach!!!!!!!!!!!!!!!!!!!!!!! -->
+               <div class="card h-100">
+                  <a href="/productos/producto/{{_id}}"><img class="card-img-top" src="{{imageURL}}" alt=""></a>
+                  <div class="card-body">
+                     <h4 class="card-title">
+                        <a href="/productos/producto/{{_id}}">{{titulo}}</a>
+                     </h4>
+                     <p class="card-text">{{stock}}</p>
+                  </div>
+                  <div class="card-footer">
+                     <h5>${{precio}}</h5>
+                  </div>
+               </div>
+            </div>
+            {{/each}}
+
+         </div>
+         <!-- /.row -->
+
+      </div>
+      <!-- /.jumbotron -->
+
+   </div>
+   <!-- /.col-lg-8 -->
+
+   <div class="col-lg-2">
+
+      {{>recomendCategorias}}
+   </div>
+   <!-- /.col-lg-2 -->
+
+</div>
+<!-- /.row -->

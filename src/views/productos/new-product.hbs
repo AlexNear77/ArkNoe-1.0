@@ -1,0 +1,73 @@
+<div class="col-md-4 mx-auto">
+   <div class="card text-center">
+      <div class="card-header">
+         <h3>Capturar producto</h3>
+      </div>
+      <div class="card-body">
+         <form action="/productos/new-product" method="POST" enctype="multipart/form-data">
+               {{!-- titulo --}}
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Nombre" name="titulo" required>
+            </div>
+            {{!-- descripcion Corta --}}
+            <div class="form-group">
+               <textarea name="descripcion" placeholder="Descripcion" class="form-control" rows="4"
+                  required></textarea>
+            </div>
+            {{!-- stock --}}
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Cantidad de productos" name="stock" required>
+            </div>
+            {{!-- precio --}}
+            <div class="form-group">
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                     placeholder="Precio venta" name="precio" required>
+                  <div class="input-group-append">
+                     <span class="input-group-text">.00</span>
+                  </div>
+               </div>
+            </div>
+            {{!-- categoria --}}
+            <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+               </div>
+               <select class="custom-select" id="inputGroupSelect01" name="categoria" required>
+                  <option selected>Choose...</option>
+                  <option value="Equipo medico">Equipo medico</option>
+                  <option value="Medio de contraste">Medio de contraste</option>
+                  <option value="Material radiologico">Material radiologico</option>
+                  <option value="Material de curacion">Material de curacion</option>
+               </select>
+            </div>
+            {{!-- envio --}}
+            {{!-- <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+               </div>
+               <select class="custom-select" id="inputGroupSelect01" name="tipoEnvio">
+                  <option selected>Choose...</option>
+                  <option value="DHL">DHL</option>
+                  <option value="Fedex">Fedex</option>
+                  <option value="UPS">UPS</option>
+               </select>
+            </div> --}}
+            {{!--  imagen--}}
+            <div class="form-group p-2">
+               <label for="exampleFormControlFile1">Subir imagen</label>
+               <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagen">
+            </div>
+            {{!-- boton --}}
+            <div class="form-group">
+               <button class="btn btn-primary btn-block">
+                  Guardar
+               </button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

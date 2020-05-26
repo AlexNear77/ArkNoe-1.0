@@ -1,0 +1,68 @@
+<div class="col-md-4 mx-auto">
+   <div class="card text-center">
+      <div class="card-header">
+         <h3>Editar producto</h3>
+      </div>
+      <div class="card-body">
+         <form action="/productos/edit/{{producto.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT">
+            {{!-- titulo --}}
+            <div class="form-group">
+               <input name="titulo" type="text" class="form-control" placeholder="Nombre" value="{{producto.titulo}}">
+            </div>
+            {{!-- descripcion }--}}
+            <div class="form-group">
+               <textarea name="descripcion" placeholder="Descripcion corta" class="form-control" rows="4"
+                  required>{{producto.descripcion}}</textarea>
+            </div>
+            {{!-- stock --}}
+            <div class="form-group">
+               <input name="stock"  type="text" class="form-control" placeholder="Cantidad" value="{{producto.stock}}">
+            </div>
+            {{!-- precio --}}
+            <div class="form-group">
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                     placeholder="Precio venta" name="precio" value="{{producto.precio}}" required>
+                  <div class="input-group-append">
+                     <span class="input-group-text">.00</span>
+                  </div>
+               </div>
+            </div>
+            {{!-- categoria --}}
+            <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+               </div>
+               <select class="custom-select" id="inputGroupSelect01" name="categoria">
+                  <option selected>Choose...</option>
+                  <option value="Equipo medico">Equipo medico</option>
+                  <option value="Medio de contraste">Medio de contraste</option>
+                  <option value="Material radiologico">Material radiologico</option>
+                  <option value="Material de curacion">Material de curacion</option>
+               </select>
+            </div>
+            {{!--  imagen--}}
+            <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Imagen</span>
+               </div>
+               <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                     aria-describedby="inputGroupFileAddon01" name="imagen">
+                  <label class="custom-file-label" for="inputGroupFile01"></label>
+               </div>
+            </div>
+            {{!-- boton --}}
+            <div class="form-group">
+               <button class="btn btn-primary btn-block">
+                  Guardar
+               </button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

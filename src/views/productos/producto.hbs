@@ -1,0 +1,92 @@
+<div class="row">
+   {{!-- Imagen --}}
+   <div class="col-lg-3 p-3">
+
+      <img src="{{producto.imageURL}}" alt="" class="card-img-top" style="display:block;
+                                                                        margin:auto;">
+
+   </div>
+   <!-- /.col-lg-3 -->
+ 
+   <div class="col-lg-7 mx-auto">
+      <!-- product -->
+      <div class="jumbotron p-4">
+         {{!--                            DESCRIPCION                       --}}
+         <h2 class="Descripción:">
+            <small>Descripción: <a href="javascript:void(0);">{{producto.titulo}}</a></small>
+         </h2>
+         <hr>
+         {{!--                            POR PIEZA                        --}}
+         <h3 class="price-container text-success">
+            ${{producto.precio}}.00
+            <small class="text-primary"> Por pieza</small>
+         </h3>
+         {{!--                            STOCK                        --}}
+         <h6>Productos disponibles: <span class="badge badge-info">{{producto.stock}}</span></h6>
+         <hr>
+         {{!--                            DESCRIPCION                --}}
+         <p class="lead text-secondary ">
+            {{producto.descripcion}}
+         </p>
+
+         <hr>
+         {{#ifCond user.tipoUser '==' 'cliente'}} 
+            <form action="/productos/checkout" method="POST">
+               {{!-- input para obtener la cantidad de producto a cotizar --}}
+               <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Cantidad</label>
+                     </div>
+                  <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Cantidad a cotizar" name="cantidad" required>
+                  </div>
+                  {{!--                           Mandamos el id                         --}}
+                  <input type="text" name="id" hidden value="{{producto.id}}">
+                </div>
+   
+               {{!--          BTN AÑADIR A CARROO--}}
+               <button class="btn btn-success btn-lg btn-block">Añadir a la lista</button type="submit">
+            </form>
+
+         {{/ifCond}}
+         {{#if user}}
+         {{else}}
+
+            {{!-- Label para obtener la cantidad de producto a cotizar --}}
+            <div class="input-group mb-1">
+               <p class="btn-danger">Para hacer cotizaciones necesitar registrarte</p>
+            </div>
+               {{!--    REGISTRATE     --}}
+
+               {{!--          BTN AÑADIR A CARROO--}}
+               <a class="btn btn-success btn-lg btn-block " href="/usersClientes/signup">Registrate!</a>
+
+         {{/if }}
+         
+
+      </div>
+      <!-- end product -->
+   </div>
+   {{!-- /.col7 --}}
+
+   {{!-- Imagen --}}
+   <div class="col-lg-2 ">
+
+      <p class="lead pb-2">Recomendaciones</p>
+      {{#each productos}}
+      <div class="col pb-3">
+         <div class="card mx-l " style="width: 12rem;">
+            <img src="{{imageURL}}" class="card-img-top" alt="...">
+            <div class="card-body">
+               <h5 class="card-title">{{titulo}}</h5>
+               <p class="card-text">{{precio}}</p>
+               <a href="/productos/producto/{{_id}}" class="btn btn-primary btn-block" >Ver más</a>
+            </div>
+         </div>
+      </div>
+      {{/each}}
+
+   </div>
+   <!-- /.col-lg-2 -->
+
+</div>

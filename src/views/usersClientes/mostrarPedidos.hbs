@@ -1,0 +1,45 @@
+
+   <div class="row">
+      <div class="col">
+         <h1>Cotizacion</h1>
+         <div class="table-responsive-sm">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th scope="col" >Producto</th>
+                     <th scope="col" class="text-center">Cantidad</th>
+                     <th scope="col" class="text-center">Precio por pieza</th>
+                     <th scope="col" class="text-center">Accion</th>
+                  </tr>
+               </thead>
+               <tbody class="table">
+                  {{#each cotizaciones}}
+                     <tr>
+                        <td >{{orden}}</td>
+                        <td class="text-center">{{cantidad}}</td>
+                        <td class="text-center">${{precioPz}}.00</td>
+                        <td class="text-center">
+
+                           {{!--            Form para eliminar producto            --}}
+                              <form action="/productos/cotizacion/delete/{{_id}}?_method=DELETE" method="POST">
+                                 <input type="hidden" name="_method" value="DELETE">
+                                 <button class="btn btn-outline-danger " type="submit">Eliminar</button>
+                              </form>
+                           </td>
+                     </tr>
+                  {{/each}}
+               </tbody>
+            </table>
+         </div>
+         <div class="p-0 mx-auto">
+            <form action="/send-email/{{user.id}}" method="post">
+            
+               <button class="btn btn-primary ">
+                  Solicitar cotización
+               </button>
+            </form>
+         </div>
+      </div>
+
+   </div>
+   <hr class="featurette-divider">

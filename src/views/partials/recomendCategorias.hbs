@@ -1,0 +1,15 @@
+<p class="lead">Recomendaciones</p>
+<div class="row ">
+   {{#each productosA}}
+   <div class="col pb-3">
+      <div class="card mx-l " style="width: 12rem;">
+         <img src="{{imageURL}}" class="card-img-top" alt="...">
+         <div class="card-body">
+            <h5 class="card-title">{{titulo}}</h5>
+            <p class="card-text">${{precio}}.00 por pieza</p>
+            <a href="/productos/producto/{{_id}}" class="btn btn-primary btn-block" >Ver más</a>
+         </div>
+      </div>
+   </div>
+   {{/each}}
+</div>

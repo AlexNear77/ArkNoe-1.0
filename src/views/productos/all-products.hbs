@@ -1,0 +1,32 @@
+
+<div class="row row-cols-1 row-cols-md-3">
+   {{#each productos}}
+   <div class="col mb-4">
+      <div class="card h-100">
+         <img src="{{imageURL}}" class="card-img-top" alt="producto" >
+         <div class="card-body">
+            
+           {{!-------------------------------- Descripcion ----------------------------------}}
+            <p class="card-text">{{titulo}}</p>
+            
+         </div>
+         <ul class="list-group list-group-flush ">
+            {{!-------------------------------- Stock --------------------------------}}
+            <li class="list-group-item">descripción: {{descripcion}}</li>
+            {{!-------------------------------- Stock --------------------------------}}
+            <li class="list-group-item">Stock: {{stock}}</li>
+            {{!-------------------------------- Categoria --------------------------------}}
+            <li class="list-group-item">Categoria: {{categoria}}</li>
+            {{!------------------------- precio -----------------------------}}
+            <li class="list-group-item text-success" style="text-align: center;">${{precio}}</li>
+         </ul>
+            <form action="/productos/delete/{{_id}}?_method=DELETE" method="POST">
+               <input type="hidden" name="_method" value="DELETE">
+               <button class="btn btn-danger btn-block " type="submit">Eliminar</button>
+            </form>
+            {{!-------------------------------- edit ----------------------------------}}
+            <a class="btn btn-warning btn-block " href="/productos/edit/{{_id}}">Editar</a>
+      </div>
+   </div>
+   {{/each}}
+</div>
