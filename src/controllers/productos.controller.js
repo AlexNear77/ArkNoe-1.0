@@ -147,9 +147,9 @@ productsCtrl.cotizar = async (req,res) =>{
          user: 'cotizaciones@arknoe.store', // La cuenta a donde lo va a enviar
          pass: ':77Arknoe77:' // contraseña esto lo creas en el host
       },
-      tls:{ // con esto fazt pudo hacer que se enviara el correo desde local host
-         rejectUnauthorized: false
-      }
+      // tls:{ // con esto fazt pudo hacer que se enviara el correo desde local host
+      //    rejectUnauthorized: false
+      // }
    });
    // datos de ese correo
    const info = await transporter.sendMail({ // lo enviamos a shel hostin y el shel hostin lo envia al correo email, aqui si van los datos de walas Ulises
